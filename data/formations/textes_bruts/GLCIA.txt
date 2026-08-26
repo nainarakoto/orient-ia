@@ -1,0 +1,23 @@
+PARCOURS : Génie Logiciel, Calcul Intensif et Intelligence Artificielle (GLCIA)
+MENTION : Informatique
+NIVEAU : Master / Ingénieur
+SOURCE_ID : SRC_003
+
+DESCRIPTION :
+Le parcours GLCIA forme des ingénieurs spécialisés dans la conception de solutions logicielles complexes, la gestion de données volumineuses et le développement d'algorithmes avancés d'intelligence artificielle.
+
+COMPÉTENCES ACQUISES :
+- Conception d'architectures logicielles distribuées et microservices.
+- Implémentation de modèles de Machine Learning, Deep Learning et ontologies.
+- Optimisation de calculs haute performance et algorithmes parallèles.
+- Gestion du cycle de vie logiciel (DevOps, Intégration Continue).
+
+DÉBOUCHÉS PROFESSIONNELS :
+- Ingénieur en Intelligence Artificielle / Machine Learning
+- Architecte Logiciel / DevOps Engineer
+- Data Scientist / Data Engineer
+- Chercheur en Informatique
+
+PRÉREQUIS :
+- Licence en Informatique, Génie Logiciel ou diplôme équivalent.
+- Bonnes bases en algorithmique, POO (Python, Java, C++) et mathématiques (algèbre, probabilités).

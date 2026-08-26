@@ -1,0 +1,21 @@
+PARCOURS : Ingénierie des Systèmes Autonomes et Intelligence Artificielle (ISAIA)
+MENTION : Intelligence Artificielle
+NIVEAU : Master / Ingénieur
+SOURCE_ID : SRC_002
+
+DESCRIPTION :
+Le parcours ISAIA est axé sur la convergence entre matériel et logiciel : robotique, systèmes embarqués intelligents, traitement du signal et vision par ordinateur.
+
+COMPÉTENCES ACQUISES :
+- Prototypage et programmation de systèmes embarqués (IoT, microcontrôleurs).
+- Traitement d'images, de flux vidéo et vision par ordinateur.
+- Conception d'agents autonomes et robotique intelligente.
+
+DÉBOUCHÉS PROFESSIONNELS :
+- Ingénieur Systèmes Embarqués & IoT
+- Ingénieur Robotique / Vision par Ordinateur
+- Spécialiste IA Embarquée
+
+PRÉREQUIS :
+- Licence en Électronique, Informatique Industrielle ou Automatique.
+- Maîtrise des langages C/C++ et Python.
