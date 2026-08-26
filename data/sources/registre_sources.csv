@@ -1,0 +1,4 @@
+id,titre,origine_url,date_consultation,statut,donnees_extraites,limites_incertitudes
+SRC_001,"Site Officiel ISPM - Offre de Formation","https://www.ispm.mg",2026-08-26,officiel,"Mentions, parcours principaux, contacts admin","Informations succinctes, maquettes complètes absentes"
+SRC_002,"Brochure Institutionnelle ISPM 2025-2026","Document local / Scanné",2026-08-26,institutionnel,"Description des filières (GLCIA, ISAIA, IGGLIA), prérequis, débouchés","Certaines compétences détaillées nécessitent validation"
+SRC_003,"Maquettes Pédagogiques Master ISPM","Document Interne ISPM",2026-08-26,officiel,"Matières par semestre, crédits ECTS, compétences visées","Certains cours optionnels ne sont pas spécifiés"

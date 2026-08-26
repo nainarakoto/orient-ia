@@ -1,0 +1,101 @@
+[
+  {
+    "id_parcours": "PARC_GLCIA",
+    "mention": "Informatique",
+    "parcours": "Génie Logiciel, Calcul Intensif et Intelligence Artificielle (GLCIA)",
+    "niveau": "Master (M1/M2)",
+    "diplome": "Diplôme d'Ingénieur / Master",
+    "description": "Formation axée sur le développement logiciel avancé, le traitement de données à grande échelle et les algorithmes d'IA.",
+    "matieres_principales": [
+      "Machine Learning & Deep Learning",
+      "Calcul Intensif & Parallélisme",
+      "Architecture Logicielle & DevOps",
+      "Ontologies & IA Symbolique",
+      "Recherche Opérationnelle"
+    ],
+    "competences_developpees": [
+      "Conception d'architectures IA",
+      "Développement web, mobile & API",
+      "Optimisation d'algorithmes complexes",
+      "Ingénierie de données"
+    ],
+    "prerequis": [
+      "Licence en Informatique ou Génie Logiciel",
+      "Maitrise de la programmation orientée objet (Python, Java/C++)",
+      "Bases solides en algèbre linéaire et probabilités"
+    ],
+    "debouches": [
+      "Ingénieur IA / Machine Learning",
+      "Architecte Logiciel",
+      "Data Scientist",
+      "Enseignant-Chercheur"
+    ],
+    "passerelles": [
+      "PARC_IGGLIA"
+    ],
+    "source_id": "SRC_003"
+  },
+  {
+    "id_parcours": "PARC_ISAIA",
+    "mention": "Intelligence Artificielle",
+    "parcours": "Ingénierie des Systèmes Autonomes et Intelligence Artificielle (ISAIA)",
+    "niveau": "Master (M1/M2)",
+    "diplome": "Diplôme d'Ingénieur",
+    "description": "Spécialisation sur la robotique, les systèmes embarqués intelligents et la vision par ordinateur.",
+    "matieres_principales": [
+      "Systèmes Embarqués & IoT",
+      "Vision par Ordinateur",
+      "Automatique & Traitement du Signal",
+      "Machine Learning"
+    ],
+    "competences_developpees": [
+      "Prototypage matériel et logiciel",
+      "Traitement d'images et flux vidéo",
+      "Programmation de microcontrôleurs"
+    ],
+    "prerequis": [
+      "Bases en électronique et automatique",
+      "Programmation C/C++ et Python"
+    ],
+    "debouches": [
+      "Ingénieur Électronique / IA",
+      "Spécialiste IoT et Robotique"
+    ],
+    "passerelles": [
+      "PARC_GLCIA"
+    ],
+    "source_id": "SRC_002"
+  },
+  {
+    "id_parcours": "PARC_IGGLIA",
+    "mention": "Informatique",
+    "parcours": "Ingénierie en Génie Logiciel et Informatique Appliquée (IGGLIA)",
+    "niveau": "Licence / Master",
+    "diplome": "Licence / Master",
+    "description": "Conception, réalisation et maintenance de systèmes logiciels et d'infrastructures réseaux.",
+    "matieres_principales": [
+      "Bases de Données Relationnelles et NoSQL",
+      "Réseaux & Sécurité",
+      "Développement Web & Mobile",
+      "Génie Logiciel & UML"
+    ],
+    "competences_developpees": [
+      "Administration de bases de données",
+      "Développement d'applications d'entreprise",
+      "Gestion de projets informatiques"
+    ],
+    "prerequis": [
+      "Baccalauréat Scientifique ou Technique",
+      "Notions de base en algorithmique"
+    ],
+    "debouches": [
+      "Développeur Full Stack",
+      "Administrateur Systèmes et Réseaux",
+      "Chef de Projet Informatique"
+    ],
+    "passerelles": [
+      "PARC_GLCIA"
+    ],
+    "source_id": "SRC_001"
+  }
+]
