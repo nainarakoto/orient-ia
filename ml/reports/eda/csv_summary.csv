@@ -1,0 +1,14 @@
+dataset,rows,columns,missing_cells,missing_percentage,duplicates,memory_mb
+admission_requirements,16,5,0,0.0,0,0.01
+candidat_filiere,12000,6,0,0.0,0,3.2
+competences,64,4,0,0.0,0,0.02
+formations_etablissement,16,11,0,0.0,0,0.03
+metiers,64,4,0,0.0,0,0.02
+professional_validation,250,6,0,0.0,0,0.08
+profils_etudiants_synthetiques,750,19,0,0.0,0,1.45
+profils_professionnels_synthetiques,250,16,0,0.0,0,0.31
+profils_synthetiques,1000,9,0,0.0,0,0.57
+serie_filiere_matrix,9,17,0,0.0,0,0.01
+sources,2,4,0,0.0,0,0.0
+subject_filiere_matrix,22,17,0,0.0,0,0.02
+terminal_subjects,79,3,0,0.0,0,0.01

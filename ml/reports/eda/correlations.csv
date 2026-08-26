@@ -1,0 +1,11 @@
+dataset,variable_1,variable_2,correlation,absolute_correlation
+profils_professionnels_synthetiques,annee_obtention,annees_experience,-1.0,1.0
+profils_synthetiques,age,score_adéquation_global,0.4096,0.4095971362440135
+profils_etudiants_synthetiques,moyenne_generale,score_compatibilite,0.258,0.2579697033518403
+profils_etudiants_synthetiques,age,moyenne_generale,-0.0585,0.058515973968780007
+profils_etudiants_synthetiques,age,score_compatibilite,-0.0238,0.023787189546285083
+profils_professionnels_synthetiques,annees_experience,adequation_formation_metier_score,-0.0229,0.022925466527662277
+profils_professionnels_synthetiques,annee_obtention,adequation_formation_metier_score,0.0229,0.02292546652766164
+profils_professionnels_synthetiques,age,annee_obtention,-0.0207,0.02074396639112585
+profils_professionnels_synthetiques,age,annees_experience,0.0207,0.020743966391122554
+profils_professionnels_synthetiques,age,adequation_formation_metier_score,-0.0023,0.002263100489977286

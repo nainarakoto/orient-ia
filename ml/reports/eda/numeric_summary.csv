@@ -1,0 +1,14 @@
+dataset,column,count,mean,std,min,q1,median,q3,max
+admission_requirements,note_minimale_requise,16,10.0,0.0,10.0,10.0,10.0,10.0,10.0
+candidat_filiere,score_compatibilite,12000,67.16946999999999,15.135047887006452,22.42,52.21,72.93,79.61,100.0
+professional_validation,adequation_score,250,84.32075999999999,8.580618057423926,70.04,76.7,84.475,92.0625,98.88
+profils_etudiants_synthetiques,age,750,18.498666666666665,1.7521677082381732,16.0,17.0,19.0,20.0,21.0
+profils_etudiants_synthetiques,moyenne_generale,750,13.037453333333334,0.9887066141416027,10.08,12.34,13.06,13.6475,15.99
+profils_etudiants_synthetiques,score_compatibilite,750,67.30984,15.119001845254061,28.15,52.95,72.60499999999999,79.535,98.14
+profils_professionnels_synthetiques,age,250,36.264,7.918910314067776,23.0,30.0,36.5,42.75,50.0
+profils_professionnels_synthetiques,annee_obtention,250,2015.384,5.753691324308395,2006.0,2011.0,2015.0,2020.0,2025.0
+profils_professionnels_synthetiques,annees_experience,250,10.616,5.753691324308394,1.0,6.0,11.0,15.0,20.0
+profils_professionnels_synthetiques,adequation_formation_metier_score,250,84.32075999999999,8.580618057423926,70.04,76.7,84.475,92.0625,98.88
+profils_synthetiques,age,1000,22.94,8.784507246713817,16.0,17.0,20.0,21.5,50.0
+profils_synthetiques,score_adéquation_global,1000,71.56257,15.62190398700745,28.15,57.515,75.68,82.3625,98.88
+terminal_subjects,coefficient,79,3.392405063291139,1.471243338821052,2.0,2.0,3.0,4.5,7.0

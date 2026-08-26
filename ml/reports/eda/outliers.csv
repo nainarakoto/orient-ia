@@ -1,0 +1,14 @@
+dataset,column,outliers,percentage
+profils_synthetiques,age,199,19.9
+profils_etudiants_synthetiques,moyenne_generale,5,0.67
+admission_requirements,note_minimale_requise,0,0.0
+professional_validation,adequation_score,0,0.0
+candidat_filiere,score_compatibilite,0,0.0
+profils_etudiants_synthetiques,age,0,0.0
+profils_etudiants_synthetiques,score_compatibilite,0,0.0
+profils_professionnels_synthetiques,annee_obtention,0,0.0
+profils_professionnels_synthetiques,age,0,0.0
+profils_professionnels_synthetiques,annees_experience,0,0.0
+profils_professionnels_synthetiques,adequation_formation_metier_score,0,0.0
+profils_synthetiques,score_adéquation_global,0,0.0
+terminal_subjects,coefficient,0,0.0
