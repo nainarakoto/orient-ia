@@ -1,0 +1,18 @@
+# Fichiers de configuration et secrets
+.env
+
+# Environnement virtuel Python
+venv/
+.venv/
+ENV/
+
+# Cache Python et compilations
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Cache des tests et IDE
+.pytest_cache/
+.vscode/
+.idea/
+*.log

@@ -1,0 +1,18 @@
+{
+  "id": "reseaux-m1",
+  "nom": "Master Réseaux et Télécommunications",
+  "mention": "Informatique",
+  "niveau": "Master 1",
+  "diplome": "Master",
+  "matieres": [
+    "Sécurité réseaux",
+    "Cloud computing",
+    "Administration systèmes"
+  ],
+  "competences": ["Configuration réseau", "Cybersécurité"],
+  "prerequis": ["Licence Informatique ou équivalent"],
+  "debouches": ["Ingénieur réseaux", "Administrateur systèmes"],
+  "metiers_associes": ["Ingénieur systèmes et réseaux"],
+  "passerelles": [],
+  "sources": ["src-test-03"]
+}

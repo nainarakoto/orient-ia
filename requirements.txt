@@ -1,0 +1,16 @@
+# Framework Web et Serveur
+fastapi>=0.100.0
+uvicorn[standard]>=0.23.0
+
+# Validation de données et Configuration
+pydantic>=2.0.0
+pydantic-settings>=2.0.0
+
+# LLM et Variables d'environnement
+google-genai
+python-dotenv
+
+# Tests unitaires
+pytest>=7.0.0
+
+numpy>=1.22.5,<2.0.0
