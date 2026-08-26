@@ -1,0 +1,14 @@
+{
+  "id": "gestion-l3",
+  "nom": "Licence Gestion",
+  "mention": "Gestion",
+  "niveau": "Licence 3",
+  "diplome": "Licence",
+  "matieres": ["Comptabilité", "Marketing", "Management"],
+  "competences": ["Analyse financière", "Communication"],
+  "prerequis": ["Bases en économie"],
+  "debouches": ["Chargé de clientèle", "Assistant de gestion"],
+  "metiers_associes": ["Gestionnaire", "Contrôleur de gestion"],
+  "passerelles": ["Master Gestion"],
+  "sources": ["src-test-02"]
+}
