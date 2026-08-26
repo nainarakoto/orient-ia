@@ -1,0 +1,14 @@
+dataset,rows,duplicates,duplicate_percentage
+admission_requirements,16,0,0.0
+candidat_filiere,12000,0,0.0
+competences,64,0,0.0
+formations_etablissement,16,0,0.0
+metiers,64,0,0.0
+professional_validation,250,0,0.0
+profils_etudiants_synthetiques,750,0,0.0
+profils_professionnels_synthetiques,250,0,0.0
+profils_synthetiques,1000,0,0.0
+serie_filiere_matrix,9,0,0.0
+sources,2,0,0.0
+subject_filiere_matrix,22,0,0.0
+terminal_subjects,79,0,0.0
