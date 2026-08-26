@@ -20,7 +20,10 @@ import os
 
 from rank_bm25 import BM25Okapi
 
-from chunking import chunker_toutes_formations
+try:
+    from .chunking import chunker_toutes_formations
+except ImportError:
+    from chunking import chunker_toutes_formations
 
 DOSSIER_FORMATIONS = os.path.join(os.path.dirname(__file__), "data", "formations")
 FICHIER_CHUNKS_CACHE = os.path.join(os.path.dirname(__file__), "chunks", "chunks.jsonl")

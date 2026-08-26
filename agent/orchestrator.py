@@ -2,6 +2,7 @@ import os
 import json
 import logging
 import traceback
+import asyncio
 from dotenv import load_dotenv
 from google import genai
 from google.genai import types
@@ -19,6 +20,7 @@ logger = logging.getLogger("OrientIA")
 
 load_dotenv()
 
+
 class OrientIAAgent:
     def __init__(self):
         logger.info("Initialisation de l'agent OrientIA...")
@@ -29,6 +31,23 @@ class OrientIAAgent:
             "tool_rechercher_doc_rag": tool_rechercher_doc_rag,
             "tool_verifier_prerequis": tool_verifier_prerequis
         }
+
+    async def _executer_outil(self, func_name: str, func_args: dict):
+        """Exécute un outil, qu'il soit synchrone ou asynchrone (coroutine)."""
+        if func_name not in self.tools_map:
+            return f"Erreur : L'outil {func_name} n'existe pas."
+
+        tool_func = self.tools_map[func_name]
+        try:
+            if asyncio.iscoroutinefunction(tool_func):
+                resultat_outil = await tool_func(**func_args)
+            else:
+                resultat_outil = tool_func(**func_args)
+        except Exception as e_outil:
+            logger.error(f"Erreur lors de l'exécution de l'outil {func_name} : {str(e_outil)}")
+            resultat_outil = f"Erreur technique : {str(e_outil)}"
+
+        return resultat_outil
 
     async def executer_dialogue(self, message_utilisateur: str, historique: list = None) -> dict:
         """Orchestre la réflexion, le choix des outils et la réponse finale de manière ASYNCHRONE."""
@@ -52,15 +71,9 @@ class OrientIAAgent:
                     func_name = call.name
                     func_args = call.args
                     outils_appeles.append({"outil": func_name, "arguments": func_args})
-                    
-                    try:
-                        if func_name in self.tools_map:
-                            resultat_outil = self.tools_map[func_name](**func_args)
-                        else:
-                            resultat_outil = f"Erreur : L'outil {func_name} n'existe pas."
-                    except Exception as e_outil:
-                        resultat_outil = f"Erreur technique : {str(e_outil)}"
-                    
+
+                    resultat_outil = await self._executer_outil(func_name, func_args)
+
                     response = await self.client.aio.models.generate_content(
                         model=self.model_name,
                         contents=f"Résultat de l'outil {func_name}: {resultat_outil}\nQuestion initiale: {message_utilisateur}",
@@ -115,12 +128,9 @@ class OrientIAAgent:
                     func_name = call.name
                     func_args = call.args
                     logger.info(f"Exécution de l'outil (Stream) : {func_name}")
-                    
-                    if func_name in self.tools_map:
-                        resultat_outil = self.tools_map[func_name](**func_args)
-                    else:
-                        resultat_outil = f"Erreur : L'outil {func_name} n'existe pas."
-                        
+
+                    resultat_outil = await self._executer_outil(func_name, func_args)
+
                     final_prompt = f"Résultat de l'outil {func_name}: {resultat_outil}\nQuestion initiale: {message_utilisateur}"
 
             # Étape 2 : Génération de la réponse en flux continu (Streaming)

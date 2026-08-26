@@ -36,8 +36,12 @@ import os
 
 import chromadb
 
-from embeddings import embed_texte
-from bm25_service import rechercher_bm25
+try:
+    from .embeddings import embed_texte
+    from .bm25_service import rechercher_bm25
+except ImportError:
+    from embeddings import embed_texte
+    from bm25_service import rechercher_bm25
 
 DOSSIER_INDEX = os.path.join(os.path.dirname(__file__), "index_chroma")
 NOM_COLLECTION = "formations"
