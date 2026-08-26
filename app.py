@@ -3,6 +3,7 @@ import os
 import streamlit as st
 
 # Configuration de la page
+
 st.set_page_config(page_title="ORIENT'IA", layout="wide")
 
 # Styles globaux
@@ -35,7 +36,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # Imports des 3 vues séparées
-from ui.tests_view import afficher_dashboard
+from ui.tests_view import afficher_tests_view
 from ui.profil import afficher_profil
 from ui.chat import afficher_chatbot
 
@@ -56,4 +57,4 @@ if choix_menu == "👤 Formulaire":
 elif choix_menu == "🎯 Évaluation & Chatbot":
     afficher_chatbot()
 elif choix_menu == "📊 Dashboard (32 Tests)":
-    afficher_dashboard()
+    afficher_tests_view()
