@@ -1,0 +1,14 @@
+{
+  "id": "info-l3",
+  "nom": "Licence Informatique",
+  "mention": "Informatique",
+  "niveau": "Licence 3",
+  "diplome": "Licence",
+  "matieres": ["Algorithmique", "Bases de données", "Réseaux"],
+  "competences": ["Programmation Python", "Gestion de projet"],
+  "prerequis": ["Bases en mathématiques", "Notions de programmation"],
+  "debouches": ["Développeur", "Analyste de données"],
+  "metiers_associes": ["Développeur logiciel", "Data analyst"],
+  "passerelles": ["Master Informatique"],
+  "sources": ["src-test-01"]
+}

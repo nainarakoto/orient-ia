@@ -1,0 +1,18 @@
+# ============================================
+# ORIENT'IA — .gitignore (partie RAG / M3 uniquement)
+# ============================================
+
+# Environnement Python (à la racine du projet)
+.venv/
+
+# Cache Python (peut apparaître n'importe où : racine, rag/, etc.)
+__pycache__/
+*.pyc
+
+# Fichiers générés par build_index.py et bm25_service.py
+# (à recréer localement avec `python build_index.py`, ne pas versionner)
+rag/index_chroma/
+rag/chunks/
+
+# Cache du modèle d'embeddings téléchargé localement
+rag/.cache/
