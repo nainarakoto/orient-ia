@@ -1,47 +1,45 @@
 import sys
 import os
+import asyncio
 
-# Ajoute le dossier parent au chemin de recherche Python
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-
 from agent.orchestrator import OrientIAAgent
 
-def tester_agent_global():
+async def executer_scenario():
     print("==================================================")
-    print("🚀 INITIALISATION DU TEST GLOBAL D'ORIENT'IA")
+    print("🎬 LANCEMENT DU SCÉNARIO DE TEST GLOBAL D'ORIENT'IA")
     print("==================================================")
     
     agent = OrientIAAgent()
     
-    # Message complexe contenant plusieurs intentions :
-    # 1. Fournir des notes et intérêts (doit déclencher l'outil ML)
-    # 2. Poser une question sur les prérequis officiels (doit déclencher l'outil RAG)
-    # 3. Demander une vérification de validation de parcours (doit déclencher l'outil Graphe/Knowledge)
-    message_complexe = (
-        "Bonjour, je m'appelle Joël. J'ai de très bonnes notes en Mathématiques et en Algorithmique, "
-        "et je m'intéresse passionnément à l'Intelligence Artificielle et au Big Data. "
-        "Est-ce que mon profil correspond au parcours ISAIA à l'ISPM ? "
-        "Peux-tu lancer une analyse complète de mon profil, vérifier les documents officiels de la brochure "
-        "et valider si mes prérequis académiques sont conformes ?"
+    # --- SCÉNARIO 1 : Test du Gardien (Hors-sujet) ---
+    print("\n--- [TEST 1] Tentative de hors-sujet (Sécurité) ---")
+    msg_hors_sujet = "Peux-tu me donner une recette de cuisine malgache ? "
+    print(f"👤 Utilisateur : {msg_hors_sujet}")
+    
+    reponse_1 = await agent.executer_dialogue(msg_hors_sujet)
+    print(f"🤖 Agent :\n{reponse_1['reponse_finale']}")
+    
+    # --- SCÉNARIO 2 : Test Nominal Complet (ML + RAG + Knowledge + Balises) ---
+    print("\n--- [TEST 2] Requête complexe avec appels d'outils et traçabilité ---")
+    msg_nominal = (
+        "Bonjour, je m'appelle Joël, j'ai d'excellentes notes en mathématiques et algorithmique. "
+        "Je souhaite intégrer la filière ISAIA à l'ISPM. "
+        "Peux-tu analyser mon profil, vérifier les documents officiels et valider mes prérequis ?"
     )
+    print(f"👤 Utilisateur : {msg_nominal}")
     
-    print(f"\n📩 MESSAGE UTILISATEUR :\n{message_complexe}\n")
-    print("⏳ L'agent analyse la demande et sélectionne les outils nécessaires...\n")
+    resultat_nominal = await agent.executer_dialogue(msg_nominal)
     
-    # Exécution
-    resultat = agent.executer_dialogue(message_complexe)
+    print("\n🤖 RÉPONSE FINALE DE L'AGENT :")
+    print(resultat_nominal["reponse_finale"])
     
+    print("\n🔍 TRACES & OBSERVABILITÉ :")
+    print(f"Statut : {resultat_nominal['traces'].get('statut')}")
+    print(f"Outils exécutés : {resultat_nominal['traces'].get('outils_executes')}")
     print("==================================================")
-    print("🤖 RÉPONSE FINALE DE L'AGENT")
-    print("==================================================")
-    print(resultat["reponse_finale"])
-    
-    print("\n==================================================")
-    print("🔍 TRACES TECHNIQUES D'OBSERVABILITÉ")
-    print("==================================================")
-    print(f"Modèle LLM utilisé : {resultat['traces']['modele_llm']}")
-    print(f"Outils déclenchés par le LLM : {resultat['traces']['outils_executes']}")
+    print("✅ SCÉNARIO GLOBAL TERMINÉ AVEC SUCCÈS !")
     print("==================================================")
 
 if __name__ == "__main__":
-    tester_agent_global()
+    asyncio.run(executer_scenario())
