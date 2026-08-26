@@ -1,0 +1,42 @@
+{
+  "sources": [
+    {
+      "id": "src-ispm-brochure-2026",
+      "titre": "Brochure des formations ISPM 2026",
+      "origine_url": "https://exemple-ispm.mg/brochure-2026",
+      "date_consultation": "2026-08-26",
+      "statut": "officiel",
+      "limites_incertitudes": "Exemple factice — à remplacer par les vraies sources collectées par M1."
+    }
+  ],
+  "formations": [
+    {
+      "id": "isaia",
+      "mention": "Informatique",
+      "parcours": "ISAIA — Intelligence Artificielle",
+      "niveau": "Licence 3 / Master",
+      "diplome": "Diplôme d'ingénieur",
+      "description": "Parcours centré sur l'IA, le machine learning et l'analyse de données.",
+      "matieres": ["mathématiques", "programmation", "analyse de données", "statistiques"],
+      "competences": ["python", "machine learning", "algorithmique"],
+      "prerequis": ["python"],
+      "debouches": ["data scientist", "ingénieur ML", "développeur IA"],
+      "passerelles": ["igglia"],
+      "source_ids": ["src-ispm-brochure-2026"]
+    },
+    {
+      "id": "igglia",
+      "mention": "Informatique",
+      "parcours": "IGGLIA — Génie Logiciel",
+      "niveau": "Licence 3 / Master",
+      "diplome": "Diplôme d'ingénieur",
+      "description": "Parcours centré sur le développement logiciel et l'architecture système.",
+      "matieres": ["programmation", "architecture logicielle", "bases de données"],
+      "competences": ["développement web", "bases de données", "génie logiciel"],
+      "prerequis": [],
+      "debouches": ["développeur logiciel", "architecte système"],
+      "passerelles": ["isaia"],
+      "source_ids": ["src-ispm-brochure-2026"]
+    }
+  ]
+}
