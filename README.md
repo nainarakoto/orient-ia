@@ -21,6 +21,7 @@ resultats = rechercher_formation("Quelles matières en licence informatique ?", 
 ```
 
 **Sortie :**
+
 ```python
 [
     {
@@ -37,3 +38,11 @@ resultats = rechercher_formation("Quelles matières en licence informatique ?", 
 - `source_id` = à citer dans la réponse finale (voir `data/registre_sources.csv` de M1).
 
 Exemples réels testés : voir `rag/exemple_input_output.json`.
+
+![Aperçu de l'application Orient-IA](./assets/acceuil.png)
+![Aperçu de l'application Orient-IA](./assets/assistant.png)
+![Aperçu de l'application Orient-IA](./assets/comparateur.png)
+![Aperçu de l'application Orient-IA](./assets/formations.png)
+![Aperçu de l'application Orient-IA](./assets/profil.png)
+![Aperçu de l'application Orient-IA](./assets/recommandation.png)
+![Aperçu de l'application Orient-IA](./assets/sources.png)
