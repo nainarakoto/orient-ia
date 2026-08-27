@@ -1,22 +1,14 @@
 """
-bm25_service.py
------------------
+bm25_service.py (v2 — corpus réel ISPM)
+-------------------------------------------
 Recherche lexicale (mots-clés exacts) en complément de la recherche
-vectorielle. Utile pour les cas où le vectoriel rate un mot clé précis
-(ex: "matières", un sigle, un nom exact de parcours) noyé dans des
-chunks très similaires entre eux.
-
-Principe : BM25 est un algorithme classique de recherche par mots-clés
-(comme un moteur de recherche à l'ancienne), qui score les documents
-selon la fréquence des mots de la requête qu'ils contiennent.
-
-Ce module lit les MÊMES chunks que ceux indexés par build_index.py,
-donc il doit être reconstruit (build_bm25_index) chaque fois que
-build_index.py est relancé, pour rester synchronisé.
+vectorielle. Lit les mêmes chunks que ceux indexés dans ChromaDB par
+build_index.py — reconstruit en mémoire à chaque lancement (rapide vu
+la taille du corpus).
 """
 
-import json
 import os
+import re
 
 from rank_bm25 import BM25Okapi
 
@@ -25,17 +17,15 @@ try:
 except ImportError:
     from chunking import chunker_toutes_formations
 
-DOSSIER_FORMATIONS = os.path.join(os.path.dirname(__file__), "data", "formations")
-FICHIER_CHUNKS_CACHE = os.path.join(os.path.dirname(__file__), "chunks", "chunks.jsonl")
+FICHIER_CORPUS = os.path.join(os.path.dirname(__file__), "data", "corpus_ispm.md")
 
 _bm25 = None
 _chunks = None
 
 # Mots vides français à ignorer : sans ce filtre, des mots très fréquents
-# comme "pour", "en", "le" faussent BM25 sur des chunks au vocabulaire
-# répétitif (ex: "Prérequis POUR intégrer...", "Débouchés POUR..."),
-# et peuvent faire remonter des chunks non pertinents pour une question
-# totalement hors sujet qui contient juste "pour" ou "en".
+# comme "pour", "en", "le" faussent BM25 sur des textes au vocabulaire
+# répétitif, et peuvent faire remonter des chunks non pertinents pour
+# une question hors sujet qui contient juste un mot-outil courant.
 STOPWORDS_FR = {
     "le", "la", "les", "un", "une", "des", "de", "du", "d",
     "en", "et", "ou", "au", "aux", "pour", "par", "sur", "dans",
@@ -47,40 +37,20 @@ STOPWORDS_FR = {
 
 def _tokeniser(texte: str) -> list[str]:
     """Tokenisation : minuscules + découpage + suppression des mots vides."""
-    import re
     texte = texte.lower()
     tokens = re.findall(r"\w+", texte)
     return [t for t in tokens if t not in STOPWORDS_FR]
 
 
-def charger_formations_locales() -> list[dict]:
-    formations = []
-    for fichier in os.listdir(DOSSIER_FORMATIONS):
-        if fichier.endswith(".json"):
-            with open(os.path.join(DOSSIER_FORMATIONS, fichier), "r", encoding="utf-8") as f:
-                formations.append(json.load(f))
-    return formations
-
-
 def build_bm25_index():
-    """
-    Reconstruit l'index BM25 en mémoire à partir des chunks générés par
-    chunking.py (les mêmes que ceux indexés dans ChromaDB par build_index.py).
-    Sauvegarde aussi les chunks dans un fichier .jsonl pour inspection/debug.
-    """
+    """Reconstruit l'index BM25 en mémoire à partir du corpus réel."""
     global _bm25, _chunks
 
-    formations = charger_formations_locales()
-    _chunks = chunker_toutes_formations(formations)
+    fiches = parser_corpus(FICHIER_CORPUS)
+    _chunks = chunker_tout_le_corpus(fiches)
 
     corpus_tokenise = [_tokeniser(c["texte"]) for c in _chunks]
     _bm25 = BM25Okapi(corpus_tokenise)
-
-    # Sauvegarde optionnelle pour inspection
-    os.makedirs(os.path.dirname(FICHIER_CHUNKS_CACHE), exist_ok=True)
-    with open(FICHIER_CHUNKS_CACHE, "w", encoding="utf-8") as f:
-        for c in _chunks:
-            f.write(json.dumps(c, ensure_ascii=False) + "\n")
 
     return _bm25, _chunks
 
@@ -121,8 +91,7 @@ def rechercher_bm25(query: str, top_k: int = 5) -> list[dict]:
 
 
 if __name__ == "__main__":
-    print("=== Test BM25 : question sur les matières ===")
-    resultats = rechercher_bm25("Quelles matières en licence informatique ?")
+    print("=== Test BM25 sur corpus réel : frais de scolarité ===")
+    resultats = rechercher_bm25("Quels sont les frais de scolarité en licence 1 ?")
     for r in resultats:
         print(r)
-    print("\nOK si le chunk 'Matières enseignées en Licence Informatique...' apparaît en premier.")
