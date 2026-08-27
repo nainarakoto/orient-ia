@@ -34,7 +34,7 @@ Paramètres principaux :
 
 ### Nombre de features
 
-19
+15
 
 ## 4. Cible
 
@@ -71,9 +71,9 @@ Les catégories inconnues sont ignorées avec :
 
 | Dataset | Accuracy | Precision | Recall | F1 | ROC-AUC | PR-AUC |
 |---|---:|---:|---:|---:|---:|---:|
-| Train | 0.5050 | 0.0741 | 0.6019 | 0.1319 | 0.5393 | 0.0609 |
-| Validation | 0.4319 | 0.0559 | 0.5089 | 0.1007 | 0.4036 | 0.0480 |
-| Test | 0.4303 | 0.0456 | 0.4071 | 0.0820 | 0.4047 | 0.0480 |
+| Train | 0.5020 | 0.0741 | 0.6057 | 0.1320 | 0.5395 | 0.0610 |
+| Validation | 0.4219 | 0.0558 | 0.5179 | 0.1007 | 0.4007 | 0.0480 |
+| Test | 0.4198 | 0.0447 | 0.4071 | 0.0806 | 0.4077 | 0.0483 |
 
 ## 7. Interprétation
 
@@ -82,7 +82,7 @@ prochains modèles.
 
 La métrique F1 sur le jeu de test est :
 
-**0.0820**
+**0.0806**
 
 Les performances des prochains modèles devront être comparées
 à cette baseline.

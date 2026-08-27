@@ -27,7 +27,6 @@ L'identifiant candidat est utilisé uniquement pour regrouper les recommandation
 ## 3. Modèles évalués
 
 - `baseline_logistic_regression`
-- `best_model`
 - `hist_gradient_boosting`
 - `random_forest`
 
@@ -42,14 +41,13 @@ L'identifiant candidat est utilisé uniquement pour regrouper les recommandation
 
 | Model | Candidates | Precision@1 | Recall@1 | HitRate@1 | NDCG@1 | Precision@3 | Recall@3 | HitRate@3 | NDCG@3 | Precision@5 | Recall@5 | HitRate@5 | NDCG@5 |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| baseline_logistic_regression | 750 | 0.0627 | 0.0627 | 0.0627 | 0.0627 | 0.0627 | 0.1880 | 0.1880 | 0.1335 | 0.0624 | 0.3120 | 0.3120 | 0.1843 |
-| best_model | 750 | 0.9840 | 0.9840 | 0.9840 | 0.9833 | 0.3329 | 0.9987 | 0.9987 | 0.9928 | 0.2000 | 1.0000 | 1.0000 | 0.9934 |
-| hist_gradient_boosting | 750 | 0.7453 | 0.7453 | 0.7453 | 0.7462 | 0.3333 | 1.0000 | 1.0000 | 0.8900 | 0.2000 | 1.0000 | 1.0000 | 0.8900 |
-| random_forest | 750 | 0.9840 | 0.9840 | 0.9840 | 0.9833 | 0.3329 | 0.9987 | 0.9987 | 0.9928 | 0.2000 | 1.0000 | 1.0000 | 0.9934 |
+| baseline_logistic_regression | 750 | 0.0627 | 0.0627 | 0.0627 | 0.0627 | 0.0627 | 0.1880 | 0.1880 | 0.1335 | 0.0627 | 0.3133 | 0.3133 | 0.1848 |
+| hist_gradient_boosting | 750 | 0.7040 | 0.7040 | 0.7040 | 0.7053 | 0.2804 | 0.8413 | 0.8413 | 0.7838 | 0.1936 | 0.9680 | 0.9680 | 0.8350 |
+| random_forest | 750 | 1.0000 | 1.0000 | 1.0000 | 0.9993 | 0.3333 | 1.0000 | 1.0000 | 0.9998 | 0.2000 | 1.0000 | 1.0000 | 0.9998 |
 
 ## 6. Interprétation
 
-Le meilleur modèle selon NDCG@5 est `best_model` avec un score de **0.9934**.
+Le meilleur modèle selon NDCG@5 est `random_forest` avec un score de **0.9998**.
 
 NDCG@K mesure la qualité du classement en tenant compte de la position des filières pertinentes. Une filière pertinente placée en première position est donc mieux valorisée qu'une filière pertinente placée plus bas dans le classement.
 

@@ -30,10 +30,10 @@ Top-5
 | Rang | Filière | Score |
 |---:|---|---:|
 | 1 | Industrie Agroalimentaire (IAA) | 1.0000 |
-| 2 | Agriculture et Élevage (AEE) | 0.2667 |
-| 3 | Pharmacologie et Industries Pharmaceutiques (PIP) | 0.2367 |
-| 4 | Électro-Mécanique et Informatique Industrielle (EMII) | 0.0400 |
-| 5 | Génie Civil et Architecture (GCA) | 0.0333 |
+| 2 | Agriculture et Élevage (AEE) | 0.1267 |
+| 3 | Informatique Statistique Appliquée et Intelligence Artificielle (ISAIA) | 0.1033 |
+| 4 | Pharmacologie et Industries Pharmaceutiques (PIP) | 0.0867 |
+| 5 | Électro-Mécanique et Informatique Industrielle (EMII) | 0.0633 |
 
 
 ## 7. Meilleure recommandation
