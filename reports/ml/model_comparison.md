@@ -27,7 +27,7 @@ Les modèles évalués ici sont :
 
 Nombre de features avant encodage :
 
-**19**
+**15**
 
 ---
 
@@ -54,7 +54,7 @@ Le jeu de test est conservé pour l'évaluation finale.
 
 | Modèle | Accuracy | Precision | Recall | F1 | ROC-AUC | PR-AUC |
 |---|---:|---:|---:|---:|---:|---:|
-| random_forest | 0.9873 | 0.8947 | 0.9027 | 0.8987 | 0.9971 | 0.9667 |\n| hist_gradient_boosting | 0.9701 | 0.9836 | 0.5310 | 0.6897 | 0.9876 | 0.8508 |\n
+| random_forest | 0.9806 | 1.0000 | 0.6903 | 0.8168 | 1.0000 | 0.9997 |\n| hist_gradient_boosting | 0.9486 | 1.0000 | 0.1770 | 0.3008 | 0.9603 | 0.6809 |\n
 
 ---
 
@@ -66,15 +66,15 @@ Selon la métrique F1 sur le jeu de test :
 
 F1 :
 
-**0.8987**
+**0.8168**
 
 ROC-AUC :
 
-**0.9971**
+**1.0000**
 
 PR-AUC :
 
-**0.9667**
+**0.9997**
 
 ---
 

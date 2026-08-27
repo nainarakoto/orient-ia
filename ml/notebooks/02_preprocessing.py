@@ -362,30 +362,24 @@ data["target"] = data["target"].astype(int)
 print_section("9. Suppression des colonnes inutiles")
 
 DROP_COLUMNS = [
-    # Identifiants personnels
     "nom_complet",
     "nom_complet_student",
 
-    # Ancienne cible
     TARGET,
 
-    # Score utilisé pour la génération/règle.
-    # On ne l'utilise PAS comme feature du modèle.
     "score_compatibilite",
-
     "score_compatibilite_cf",
+    "score_compatibilite_student",
 
-    # Autres colonnes potentiellement dérivées
     "est_admissible",
 
-    # Recommandation déjà présente dans le profil
     "filiere_recommandee",
     "filiere_compatible",
+    "filieres_compatibles",
+    "parcours_recommande",
+    "niveau_confiance",
 
-    # Justification générée
     "justification",
-
-    
 ]
 
 existing_drop_columns = [

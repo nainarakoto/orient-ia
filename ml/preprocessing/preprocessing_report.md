@@ -21,8 +21,12 @@ Les variables suivantes ont été exclues du modèle car elles peuvent être dir
 - `nom_complet`
 - `est_recommandee`
 - `score_compatibilite_cf`
+- `score_compatibilite_student`
 - `est_admissible`
 - `filiere_recommandee`
+- `filieres_compatibles`
+- `parcours_recommande`
+- `niveau_confiance`
 - `justification`
 
 ## 5. Feature engineering
@@ -49,10 +53,6 @@ La séparation est effectuée par groupe de candidat afin d'éviter qu'un même 
 - `moyenne_generale`
 - `preferences_env`
 - `objectif_professionnel`
-- `filieres_compatibles`
-- `parcours_recommande`
-- `score_compatibilite_student`
-- `niveau_confiance`
 - `filiere_nom`
 - `filiere_parcours_id`
 - `filiere_parcours_nom`

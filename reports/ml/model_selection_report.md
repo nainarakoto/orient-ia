@@ -20,15 +20,15 @@ NDCG@5 mesure la qualité du classement des cinq premières filières recommand�
 
 |   rank | model                        |   ndcg@5 |   recall@5 |   precision@5 |   hit_rate@5 |
 |-------:|:-----------------------------|---------:|-----------:|--------------:|-------------:|
-|      1 | random_forest                | 0.993407 |      1     |        0.2    |        1     |
-|      2 | hist_gradient_boosting       | 0.889987 |      1     |        0.2    |        1     |
-|      3 | baseline_logistic_regression | 0.184254 |      0.312 |        0.0624 |        0.312 |
+|      1 | random_forest                | 0.999754 |   1        |     0.2       |     1        |
+|      2 | hist_gradient_boosting       | 0.835008 |   0.968    |     0.1936    |     0.968    |
+|      3 | baseline_logistic_regression | 0.18477  |   0.313333 |     0.0626667 |     0.313333 |
 
 ## 5. Modèle sélectionné
 
-### 🏆 random_forest
+### random_forest
 
-- NDCG@5 : **0.9934**
+- NDCG@5 : **0.9998**
 - Recall@5 : **1.0000**
 - Precision@5 : **0.2000**
 - HitRate@5 : **1.0000**

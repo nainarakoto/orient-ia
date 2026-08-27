@@ -1,17 +1,17 @@
 rang,candidat_id,filiere_code,filiere_nom,filiere_parcours_id,filiere_parcours_nom,filiere_secteur,score_recommandation
 1,STD_2026_0001,IAA,Industrie Agroalimentaire,P1,Biotechnologie et Agronomie,Industrie Agroalimentaire,1.0
-2,STD_2026_0001,AEE,Agriculture et Élevage,P1,Biotechnologie et Agronomie,Agriculture / Agronomie,0.26666666666666666
-3,STD_2026_0001,PIP,Pharmacologie et Industries Pharmaceutiques,P1,Biotechnologie et Agronomie,Industrie Pharmaceutique & Santé,0.23666666666666666
-4,STD_2026_0001,EMII,Électro-Mécanique et Informatique Industrielle,P2,Génie Industriel et Génie Civil,Industrie & Automatisme,0.04
-5,STD_2026_0001,GCA,Génie Civil et Architecture,P2,Génie Industriel et Génie Civil,Bâtiment et Travaux Publics (BTP),0.03333333333333333
-6,STD_2026_0001,DTJA,Droit et Techniques Juridiques des Affaires,P5,Techniques des Affaires,Droit & Juridique,0.03333333333333333
-7,STD_2026_0001,TEE,Tourisme et Environnement,P4,Techniques du Tourisme,Tourisme & Environnement,0.03
-8,STD_2026_0001,FIC,Finances et Comptabilités,P5,Techniques des Affaires,Finance & Comptabilité,0.02
-9,STD_2026_0001,ESIIA,Electronique Système Informatique et Intelligence Artificielle,P3,Informatique et Télécommunication,Électronique & High-Tech,0.016666666666666666
-10,STD_2026_0001,CAA,Commerce et Administration des Affaires,P5,Techniques des Affaires,Commerce & Marketing,0.016666666666666666
-11,STD_2026_0001,EMP,Economie et Management de Projet,P5,Techniques des Affaires,Management & Conseil,0.013333333333333334
-12,STD_2026_0001,ICMP,"Industries Chimiques, Minières et Pétrolières",P2,Génie Industriel et Génie Civil,"Mines, Énergie & Chimie",0.013333333333333334
-13,STD_2026_0001,IMTICIA,Informatique Multimédia Technologie de L'information et de la Communication et Intelligence Artificielle,P3,Informatique et Télécommunication,Numérique & Multimédia,0.01
-14,STD_2026_0001,IGGLIA,Informatique de Gestion Génie Logiciel et Intelligence Artificielle,P3,Informatique et Télécommunication,Informatique & Édition de Logiciels,0.006666666666666667
-15,STD_2026_0001,ISAIA,Informatique Statistique Appliquée et Intelligence Artificielle,P3,Informatique et Télécommunication,Data & Intelligence Artificielle,0.006666666666666667
-16,STD_2026_0001,TEH,Tourisme et Hôtellerie,P4,Techniques du Tourisme,Hôtellerie & Restauration,0.0033333333333333335
+2,STD_2026_0001,AEE,Agriculture et Élevage,P1,Biotechnologie et Agronomie,Agriculture / Agronomie,0.12666666666666668
+3,STD_2026_0001,ISAIA,Informatique Statistique Appliquée et Intelligence Artificielle,P3,Informatique et Télécommunication,Data & Intelligence Artificielle,0.10333333333333333
+4,STD_2026_0001,PIP,Pharmacologie et Industries Pharmaceutiques,P1,Biotechnologie et Agronomie,Industrie Pharmaceutique & Santé,0.08666666666666667
+5,STD_2026_0001,EMII,Électro-Mécanique et Informatique Industrielle,P2,Génie Industriel et Génie Civil,Industrie & Automatisme,0.06333333333333334
+6,STD_2026_0001,DTJA,Droit et Techniques Juridiques des Affaires,P5,Techniques des Affaires,Droit & Juridique,0.056666666666666664
+7,STD_2026_0001,TEE,Tourisme et Environnement,P4,Techniques du Tourisme,Tourisme & Environnement,0.05333333333333334
+8,STD_2026_0001,IMTICIA,Informatique Multimédia Technologie de L'information et de la Communication et Intelligence Artificielle,P3,Informatique et Télécommunication,Numérique & Multimédia,0.04666666666666667
+9,STD_2026_0001,TEH,Tourisme et Hôtellerie,P4,Techniques du Tourisme,Hôtellerie & Restauration,0.04666666666666667
+10,STD_2026_0001,GCA,Génie Civil et Architecture,P2,Génie Industriel et Génie Civil,Bâtiment et Travaux Publics (BTP),0.03666666666666667
+11,STD_2026_0001,ESIIA,Electronique Système Informatique et Intelligence Artificielle,P3,Informatique et Télécommunication,Électronique & High-Tech,0.03666666666666667
+12,STD_2026_0001,IGGLIA,Informatique de Gestion Génie Logiciel et Intelligence Artificielle,P3,Informatique et Télécommunication,Informatique & Édition de Logiciels,0.023333333333333334
+13,STD_2026_0001,ICMP,"Industries Chimiques, Minières et Pétrolières",P2,Génie Industriel et Génie Civil,"Mines, Énergie & Chimie",0.02
+14,STD_2026_0001,EMP,Economie et Management de Projet,P5,Techniques des Affaires,Management & Conseil,0.016666666666666666
+15,STD_2026_0001,CAA,Commerce et Administration des Affaires,P5,Techniques des Affaires,Commerce & Marketing,0.013333333333333334
+16,STD_2026_0001,FIC,Finances et Comptabilités,P5,Techniques des Affaires,Finance & Comptabilité,0.013333333333333334
