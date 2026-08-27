@@ -1,5 +1,6 @@
 import streamlit as st
 from state import get_profil, update_profil
+from services.api_client import get_ml_schema
 
 ETAPES = [
     "Parcours scolaire",
@@ -24,11 +25,16 @@ METIERS = [
     "Chercheur", "Consultant", "Administrateur système",
 ]
 
-ENVIRONNEMENTS = ["Bureau", "Terrain", "Mixte", "À distance", "Pas de préférence"]
-
 
 def _step_key():
     return "profil_etape"
+
+
+def _valeur_numerique(profil, champ, defaut):
+    valeur = profil.get(champ)
+    if valeur in ("", None):
+        return defaut
+    return valeur
 
 
 def render_profile_form():
@@ -37,18 +43,54 @@ def render_profile_form():
 
     etape = st.session_state[_step_key()]
     profil = get_profil()
+    schema_ml = get_ml_schema()
 
     st.progress((etape + 1) / len(ETAPES))
     st.markdown(f"**Étape {etape + 1} sur {len(ETAPES)} — {ETAPES[etape]}**")
 
     if etape == 0:
+        col_age, col_serie, col_moyenne = st.columns(3)
+        with col_age:
+            age = st.number_input(
+                "Âge",
+                min_value=14,
+                max_value=60,
+                value=int(_valeur_numerique(profil, "age", 18)),
+                step=1,
+            )
+        with col_serie:
+            options_serie = [""] + schema_ml.get("series", [])
+            serie_actuelle = profil.get("serie", "")
+            serie = st.selectbox(
+                "Série du bac",
+                options_serie,
+                index=options_serie.index(serie_actuelle) if serie_actuelle in options_serie else 0,
+            )
+        with col_moyenne:
+            moyenne = st.number_input(
+                "Moyenne générale",
+                min_value=0.0,
+                max_value=20.0,
+                value=float(_valeur_numerique(profil, "moyenne_generale", 10.0)),
+                step=0.1,
+            )
+
         matieres = st.multiselect("Matières préférées", MATIERES, default=profil.get("matieres_preferees") or [])
+        matieres_faibles = st.multiselect(
+            "Matières les moins fortes",
+            MATIERES,
+            default=profil.get("matieres_faibles") or [],
+        )
         resultats = st.text_area(
             "Résultats scolaires",
             value=profil.get("resultats_scolaires", ""),
             placeholder="Niveau actuel, moyenne ou mention obtenue",
         )
+        update_profil("age", age)
+        update_profil("serie", serie)
+        update_profil("moyenne_generale", moyenne)
         update_profil("matieres_preferees", matieres)
+        update_profil("matieres_faibles", matieres_faibles)
         update_profil("resultats_scolaires", resultats)
 
     elif etape == 1:
@@ -56,7 +98,7 @@ def render_profile_form():
         interets = st.text_area(
             "Centres d'intérêt",
             value=profil.get("centres_interet", ""),
-            placeholder="Décrivez vos centres d'intérêt personnels ou académiques",
+            placeholder="Décrivez vos centres d'intérêt, séparés par des virgules",
         )
         update_profil("competences", competences)
         update_profil("centres_interet", interets)
@@ -72,16 +114,27 @@ def render_profile_form():
 
     elif etape == 3:
         metiers = st.multiselect(
-            "Préférences professionnelles", METIERS, default=profil.get("preferences_professionnelles") or []
+            "Métiers qui vous intéressent", METIERS, default=profil.get("preferences_professionnelles") or []
         )
+
+        options_objectif = [""] + schema_ml.get("objectifs_professionnels", [])
+        objectif_actuel = profil.get("objectif_professionnel", "")
+        objectif_professionnel = st.selectbox(
+            "Objectif professionnel principal",
+            options_objectif,
+            index=options_objectif.index(objectif_actuel) if objectif_actuel in options_objectif else 0,
+            help="Utilisé par le modèle de recommandation pour évaluer l'adéquation avec chaque filière.",
+        )
+
+        options_env = [""] + schema_ml.get("preferences_env", [])
+        env_actuel = profil.get("environnement_travail", "")
         environnement = st.selectbox(
             "Type d'environnement de travail recherché",
-            ENVIRONNEMENTS,
-            index=ENVIRONNEMENTS.index(profil["environnement_travail"])
-            if profil.get("environnement_travail") in ENVIRONNEMENTS
-            else 0,
+            options_env,
+            index=options_env.index(env_actuel) if env_actuel in options_env else 0,
         )
         update_profil("preferences_professionnelles", metiers)
+        update_profil("objectif_professionnel", objectif_professionnel)
         update_profil("environnement_travail", environnement)
 
     col_precedent, col_suivant = st.columns(2)

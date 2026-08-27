@@ -1,11 +1,16 @@
 import streamlit as st
 from pathlib import Path
+from datetime import datetime
 
 from state import init_session_state, get_profil
 from components.icons import inject_global_head
 from components.header import render_header
 from components.mention import render_mention_banner
 from services.api_client import envoyer_message_assistant
+
+
+def _horodatage():
+    return datetime.now().strftime("%H:%M")
 
 
 init_session_state()
@@ -24,7 +29,9 @@ for message in st.session_state.chat_history:
 question = st.chat_input("Posez votre question sur les formations, les prérequis ou votre orientation")
 
 if question:
-    st.session_state.chat_history.append({"role": "user", "contenu": question})
+    st.session_state.chat_history.append(
+        {"role": "user", "contenu": question, "heure": _horodatage()}
+    )
     with st.chat_message("user"):
         st.markdown(question)
 
@@ -38,5 +45,10 @@ if question:
             st.caption("Outils utilisés : " + ", ".join(resultat["outils_appeles"]))
 
     st.session_state.chat_history.append(
-        {"role": "assistant", "contenu": resultat["reponse"], "sources": resultat.get("sources", [])}
+        {
+            "role": "assistant",
+            "contenu": resultat["reponse"],
+            "sources": resultat.get("sources", []),
+            "heure": _horodatage(),
+        }
     )

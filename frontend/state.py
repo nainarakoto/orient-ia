@@ -2,12 +2,17 @@ import streamlit as st
 
 PROFILE_FIELDS = [
     "matieres_preferees",
+    "matieres_faibles",
     "resultats_scolaires",
     "competences",
     "centres_interet",
     "activites_projets",
     "preferences_professionnelles",
     "environnement_travail",
+    "age",
+    "serie",
+    "moyenne_generale",
+    "objectif_professionnel",
 ]
 
 NOTES_MATIERES = ["Mathématiques", "Français", "Physique-Chimie", "Anglais", "SVT", "Gestion / Éco / Philo"]

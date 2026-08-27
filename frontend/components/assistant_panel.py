@@ -59,7 +59,7 @@ def render_assistant_panel():
                         {icone}
                         <div class="{classe}">
                             {message['contenu'].replace(chr(10), '<br>')}
-                            <div class="chat-time">{message['heure']}</div>
+                            <div class="chat-time">{message.get('heure', '')}</div>
                         </div>
                     </div>
                     """

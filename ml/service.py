@@ -42,6 +42,39 @@ def obtenir_liste_metiers_connus() -> list:
     return sorted(tous_metiers)
 
 
+def obtenir_schema_ml() -> dict:
+    """
+    Retourne les catégories exactes attendues par le pipeline scikit-learn
+    pour les champs catégoriels du profil utilisateur (série du bac,
+    préférence d'environnement de travail, objectifs professionnels connus).
+
+    Extraites directement depuis le OneHotEncoder entraîné (et depuis les
+    formations connues pour les métiers), afin que le frontend construise
+    ses menus déroulants toujours parfaitement synchronisés avec le modèle,
+    même si celui-ci est ré-entraîné avec des catégories différentes plus tard.
+    """
+    model = _charger_modele()
+    preprocessing = model.named_steps["preprocessing"]
+
+    series = []
+    preferences_env = []
+    for nom_transformer, transfo, colonnes in preprocessing.transformers_:
+        if nom_transformer != "categorical":
+            continue
+        encoder = transfo.named_steps["encoder"]
+        colonnes = list(colonnes)
+        if "serie" in colonnes:
+            series = list(encoder.categories_[colonnes.index("serie")])
+        if "preferences_env" in colonnes:
+            preferences_env = list(encoder.categories_[colonnes.index("preferences_env")])
+
+    return {
+        "series": series,
+        "preferences_env": preferences_env,
+        "objectifs_professionnels": obtenir_liste_metiers_connus(),
+    }
+
+
 def _charger_metiers_connus():
     """
     Précalcule les embeddings des métiers connus, une seule fois (mis en
