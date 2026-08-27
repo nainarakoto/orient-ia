@@ -6,7 +6,10 @@ async def test_mode_normal():
     print("\n========== TEST MODE NORMAL ==========")
     agent = OrientIAAgent()
     resultat = await agent.executer_dialogue(
-        "Quels sont les prérequis pour la filière ISAIA ?"
+        "J'ai 18 ans, je suis en série C, ma moyenne est de 14, je préfère travailler "
+        "en laboratoire, mon objectif est de devenir ingénieur. Je suis fort en maths "
+        "et physique, faible en langues, j'aime la programmation, mes compétences sont "
+        "Python et statistiques. Quelle filière me recommandes-tu ?"
     )
     print("\n--- Réponse finale ---")
     print(resultat["reponse_finale"])

@@ -30,9 +30,16 @@ Fonctionnement interne (nouveau) :
 
 Règle de sécurité (inchangée) : si rien n'est assez pertinent, on
 retourne une liste vide [] plutôt qu'un passage non pertinent.
+
+Robustesse (nouveau) : si la partie vectorielle (ChromaDB) échoue pour
+une raison quelconque (index incompatible avec la version de chromadb
+installée, index absent, etc.), on logue l'erreur et on continue avec
+le lexical (BM25) seul, plutôt que de faire planter l'outil et donc
+l'agent qui l'appelle.
 """
 
 import os
+import logging
 
 import chromadb
 
@@ -42,6 +49,8 @@ try:
 except ImportError:
     from embeddings import embed_texte
     from bm25_service import rechercher_bm25
+
+logger = logging.getLogger("OrientIA")
 
 DOSSIER_INDEX = os.path.join(os.path.dirname(__file__), "index_chroma")
 NOM_COLLECTION = "formations"
@@ -63,15 +72,34 @@ def _get_collection():
                 f"As-tu lancé `python build_index.py` au moins une fois ?"
             )
         _client = chromadb.PersistentClient(path=DOSSIER_INDEX)
-        _collection = _client.get_collection(NOM_COLLECTION)
+        # embedding_function=None : on fournit nous-mêmes les embeddings via
+        # embed_texte() / query_embeddings=[...], donc Chroma n'a pas besoin
+        # de fonction d'embedding. Sans ce paramètre explicite, get_collection
+        # tente de reconstruire automatiquement la fonction d'embedding
+        # stockée dans les métadonnées internes de la collection (champ
+        # "_type"), ce qui casse avec un KeyError: '_type' si l'index a été
+        # construit avec une version de chromadb différente de celle
+        # installée actuellement (même type de dérive de version que pour
+        # les pickles scikit-learn).
+        _collection = _client.get_collection(NOM_COLLECTION, embedding_function=None)
     return _collection
 
 
 def _rechercher_vectoriel(query: str, top_k: int) -> list[dict]:
-    """Recherche vectorielle brute (score déjà entre 0 et 1)."""
-    collection = _get_collection()
-    vecteur_query = embed_texte(query)
-    resultats = collection.query(query_embeddings=[vecteur_query], n_results=top_k)
+    """Recherche vectorielle brute (score déjà entre 0 et 1).
+
+    Renvoie une liste vide (plutôt que de lever une exception) si la
+    collection est indisponible ou si la requête échoue, pour permettre
+    à rechercher_formation() de dégrader vers BM25 seul sans planter.
+    """
+    try:
+        collection = _get_collection()
+        vecteur_query = embed_texte(query)
+        resultats = collection.query(query_embeddings=[vecteur_query], n_results=top_k)
+    except Exception as e:
+        logger.error(f"Recherche vectorielle (ChromaDB) indisponible, "
+                     f"repli sur BM25 seul : {e}")
+        return []
 
     documents = resultats["documents"][0] if resultats["documents"] else []
     metadatas = resultats["metadatas"][0] if resultats["metadatas"] else []
@@ -111,14 +139,19 @@ def rechercher_formation(query: str, top_k: int = 5) -> list[dict]:
 
     Returns:
         Liste de dicts (voir contrat en haut du fichier). Liste vide
-        si rien d'assez pertinent n'est trouvé.
+        si rien d'assez pertinent n'est trouvé (ou si les deux moteurs
+        de recherche sont indisponibles).
     """
-    # 1. Recherche vectorielle
+    # 1. Recherche vectorielle (dégrade vers [] en cas d'échec, cf. plus haut)
     resultats_vect = _rechercher_vectoriel(query, top_k=top_k * 2)
 
     # 2. Recherche lexicale
-    resultats_bm25 = rechercher_bm25(query, top_k=top_k * 2)
-    resultats_bm25 = _normaliser_scores_bm25(resultats_bm25)
+    try:
+        resultats_bm25 = rechercher_bm25(query, top_k=top_k * 2)
+        resultats_bm25 = _normaliser_scores_bm25(resultats_bm25)
+    except Exception as e:
+        logger.error(f"Recherche lexicale (BM25) indisponible : {e}")
+        resultats_bm25 = []
 
     # 3. Fusion : on indexe par (formation_id, extrait) pour combiner
     fusion: dict[tuple, dict] = {}

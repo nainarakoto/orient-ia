@@ -9,6 +9,7 @@ from google.genai import types
 
 from agent.system_prompt import SYSTEM_INSTRUCTION
 from agent.tools import tool_analyser_profil_ml, tool_rechercher_doc_rag, tool_verifier_prerequis
+from agent.groq_fallback import executer_dialogue_groq, executer_dialogue_stream_groq
 
 # --- CONFIGURATION DU LOGGER ---
 logging.basicConfig(
@@ -19,6 +20,12 @@ logging.basicConfig(
 logger = logging.getLogger("OrientIA")
 
 load_dotenv()
+
+
+def _est_erreur_quota(exception) -> bool:
+    """Détecte si l'erreur Gemini est un dépassement de quota (429), le seul cas où on bascule vers le fallback Groq."""
+    texte = str(exception)
+    return "429" in texte or "RESOURCE_EXHAUSTED" in texte
 
 
 class OrientIAAgent:
@@ -93,6 +100,23 @@ class OrientIAAgent:
             }
 
         except Exception as e_global:
+            if _est_erreur_quota(e_global):
+                logger.warning("Quota Gemini épuisé, bascule vers le fallback Groq (llama-3.3-70b-versatile)...")
+                try:
+                    return await executer_dialogue_groq(message_utilisateur, SYSTEM_INSTRUCTION)
+                except Exception as e_fallback:
+                    logger.error("Le fallback Groq a également échoué :")
+                    logger.error(traceback.format_exc())
+                    return {
+                        "reponse_finale": "Désolé, je rencontre actuellement une difficulté technique. Pouvez-vous réessayer dans quelques instants ?",
+                        "traces": {
+                            "outils_executes": [],
+                            "modele_llm": "aucun (Gemini et Groq indisponibles)",
+                            "statut": "Erreur Critique",
+                            "erreur_technique": f"Gemini: {str(e_global)} | Groq: {str(e_fallback)}"
+                        }
+                    }
+
             logger.error("CRASH GLOBAL DE L'ORCHESTRATEUR :")
             logger.error(traceback.format_exc())
             return {
@@ -111,7 +135,6 @@ class OrientIAAgent:
         tools_list = [tool_analyser_profil_ml, tool_rechercher_doc_rag, tool_verifier_prerequis]
 
         try:
-            # Étape 1 : Analyse initiale et exécution des outils si nécessaire
             response = await self.client.aio.models.generate_content(
                 model=self.model_name,
                 contents=message_utilisateur,
@@ -133,7 +156,6 @@ class OrientIAAgent:
 
                     final_prompt = f"Résultat de l'outil {func_name}: {resultat_outil}\nQuestion initiale: {message_utilisateur}"
 
-            # Étape 2 : Génération de la réponse en flux continu (Streaming)
             logger.info("Début du streaming de la réponse finale...")
             async for chunk in await self.client.aio.models.generate_content_stream(
                 model=self.model_name,
@@ -147,5 +169,16 @@ class OrientIAAgent:
                     yield chunk.text
 
         except Exception as e_stream:
+            if _est_erreur_quota(e_stream):
+                logger.warning("Quota Gemini épuisé (stream), bascule vers le fallback Groq...")
+                try:
+                    async for chunk in executer_dialogue_stream_groq(message_utilisateur, SYSTEM_INSTRUCTION):
+                        yield chunk
+                    return
+                except Exception as e_fallback:
+                    logger.error(f"Le fallback Groq (stream) a également échoué : {str(e_fallback)}")
+                    yield "Désolé, une erreur technique est survenue lors de la génération de la réponse."
+                    return
+
             logger.error(f"Erreur lors du streaming : {str(e_stream)}")
             yield "Désolé, une erreur technique est survenue lors de la génération de la réponse."
